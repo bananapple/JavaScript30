@@ -62,21 +62,23 @@
   // 播放音效
   // 加播放效果樣式
   // 刪除播放效果樣式
-  window.addEventListener('keydown', function(e){
+  function playSound(e){
     var audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
     var key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
     if(!audio) return;
     audio.currentTime = 0;
     audio.play();
-    key.classList.add('playing');
-  });
-
-  function removeTransition(e){
-    console.log(e);
+    key.classList.add('playing');    
   }
+  function removeTransition(e){
+    if(e.propertyName !== 'transform') return;
+    this.classList.remove('playing');
+  }
+  window.addEventListener('keydown', playSound);
+
 
   var keys = document.querySelectorAll('.key');
-  keys.forEach(key => key.addEventListener('transitionend', removeTransition)); //這句也太難
+  keys.forEach(key => key.addEventListener('transitionend', removeTransition)); //這句也太難，為什麼用 => ?
 
 </script>
 
