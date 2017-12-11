@@ -21,11 +21,6 @@
   <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500">
 
   <style>
-
-    /*
-      misc styles, nothing to do with CSS variables
-    */
-
     body {
       text-align: center;
       background: #193549;
@@ -41,6 +36,18 @@
 
     input {
       width:100px;
+    }
+
+    :root {
+      --base: yellow;
+      --spacing: 20px;
+      --blue: 10px;
+    }
+
+    img {
+      padding: var(--spacing);
+      background: var(--base);
+      filter: blur(var(--blur));
     }
   </style>
 
