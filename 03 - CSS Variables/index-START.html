@@ -39,19 +39,32 @@
     }
 
     :root {
-      --base: yellow;
+      --base-color: yellow;
       --spacing: 20px;
       --blue: 10px;
     }
 
     img {
       padding: var(--spacing);
-      background: var(--base);
+      background: var(--base-color);
       filter: blur(var(--blur));
+    }
+    .hl{
+      color: var(--base-color);
     }
   </style>
 
   <script>
+    var inputs = document.querySelectorAll('.controls input');
+    console.log(inputs);
+    // 老師說 NodeList 不是 array；forEach 最近被加到 NodeList 了，但是老舊瀏覽器不支援
+
+    function handleUpdate(){
+      console.log(this.value);
+    }
+
+    inputs.forEach(input => input.addEventListener('change', handleUpdate)); //好難好難
+    inputs.forEach(input => input.addEventListener('mousemove', hadnleUpdate));
   </script>
 
 </body>
