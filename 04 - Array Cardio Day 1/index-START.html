@@ -31,13 +31,26 @@
 
     // Array.prototype.filter()
     // 1. Filter the list of inventors for those who were born in the 1500's
-    var fifteen = inventors.filter(inventors => (inventors.year >= 1500 && inventors.year < 1600))
-    console.table(fifteen);
+    var fifteen = inventors.filter(inventors => (inventors.year >= 1500 && inventors.year < 1600));
+
     // Array.prototype.map()
     // 2. Give us an array of the inventors' first and last names
+    var names = inventors.map(inventors => inventors.first + inventors.last);
+    // var names = inventors.map(inventors => `${inventors.first} ${inventors.last}`);
+    // 🌚
+    console.log(names);
 
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
+    var ordered = inventors.sort(function(a, b){
+      if(a.year > b.year){
+        return 1;
+      } else{
+        return -1;
+      }
+    });
+    console.table(ordered);
+    // 其實 if(a.year > b.year) 我不是真的能夠理解，笑吧，就笑我笨吧！😡
 
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live?
