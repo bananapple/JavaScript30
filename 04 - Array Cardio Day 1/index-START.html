@@ -49,7 +49,7 @@
         return -1;
       }
     });
-    console.table(ordered);
+    // console.table(ordered);
     // 其實 if(a.year > b.year) 我不是真的能夠理解，笑吧，就笑我笨吧！😡
 
     // Array.prototype.reduce()
@@ -57,13 +57,31 @@
     var totalYears = inventors.reduce((total, inventors) => {
       return total + (inventors.passed - inventors.year);
     }, 0);
-    console.log(totalYears);
+    // console.log(totalYears);
     // 幹這一段根本沒解釋啊
 
     // 5. Sort the inventors by years lived
+    var oldest = inventors.sort(function(a, b){
+      var lastGuy = a.passed - a.year;
+      var nextGuy = b.passed - b.year;
+      return lastGuy > nextGuy ? -1 :1;
+      // if(lastGuy > nextGuy){
+      //   return -1;
+      // } else{
+      //   return 1;
+      // }
+      // a 跟 b 是哪來的？
+    });
+    console.table(oldest);
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
+    var category = document.querySelector('.mw-category');
+    var links = Array.from(document.querySelectorAll('a'));
+    var de = links.map(link => link.textContent).filter(streetName => streetName.includes('de'));
+    // textContent?
+    // querySelector 會回傳 nodelist，不是 array
+    // streeName 從哪裡蹦出來啦
 
 
     // 7. sort Exercise
