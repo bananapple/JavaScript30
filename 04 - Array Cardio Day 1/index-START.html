@@ -38,7 +38,7 @@
     var names = inventors.map(inventors => inventors.first + inventors.last);
     // var names = inventors.map(inventors => `${inventors.first} ${inventors.last}`);
     // 🌚
-    console.log(names);
+    // console.log(names);
 
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
@@ -72,25 +72,36 @@
       // }
       // a 跟 b 是哪來的？
     });
-    console.table(oldest);
+    // console.table(oldest);
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
-    var category = document.querySelector('.mw-category');
-    var links = Array.from(document.querySelectorAll('a'));
-    var de = links.map(link => link.textContent).filter(streetName => streetName.includes('de'));
-    // textContent?
+
+    // var category = document.querySelector('.mw-category');
+    // var links = Array.from(document.querySelectorAll('a'));
+    // var de = links.map(link => link.textContent).filter(streetName => streetName.includes('de'));
+
+    // textContent?什麼啊
     // querySelector 會回傳 nodelist，不是 array
     // streeName 從哪裡蹦出來啦
-
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
 
+    var alpha = people.sort((lastOne, nextOne) => {
+      var [aLast, aFirst] = lastOne.split(', ');
+      var [bLast, bFirst] = nextOne.split(', ');
+      return aLast > bLast ? 1 : -1;
+    });
+    console.log(alpha);
+
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
-
+    var transportation = data.reduce(function(obj, item){
+      console.log(item);
+      return obj;
+    },{})
   </script>
 </body>
 </html>
