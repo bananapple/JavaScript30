@@ -99,9 +99,15 @@
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
     var transportation = data.reduce(function(obj, item){
-      console.log(item);
+      if(!obj[item]){
+        obj[item] = 0;
+      }
+      obj[item]++;
       return obj;
-    },{})
+    }, {});
+
+    console.log(transportation);
+    // 黑人問號
   </script>
 </body>
 </html>
