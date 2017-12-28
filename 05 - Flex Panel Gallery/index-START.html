@@ -20,13 +20,11 @@
     *, *:before, *:after {
       box-sizing: inherit;
     }
-
     .panels {
       min-height:100vh;
       overflow: hidden;
       display: flex;
     }
-
     .panel {
       flex: 1;
       display: flex;
@@ -45,25 +43,33 @@
       background-size:cover;
       background-position:center;
     }
-
-
     .panel1 { background-image:url(https://source.unsplash.com/gYl-UtwNg_I/1500x1500); }
     .panel2 { background-image:url(https://source.unsplash.com/rFKUFzjPYiQ/1500x1500); }
     .panel3 { background-image:url(https://images.unsplash.com/photo-1465188162913-8fb5709d6d57?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&cs=tinysrgb&w=1500&h=1500&fit=crop&s=967e8a713a4e395260793fc8c802901d); }
     .panel4 { background-image:url(https://source.unsplash.com/ITjiVXcwVng/1500x1500); }
     .panel5 { background-image:url(https://source.unsplash.com/3MNzGlQM7qs/1500x1500); }
-
     .panel > * {
       flex: 1 0 auto;
+      width: 100%;
+      margin:0;
       display: flex;
       justify-content: center;
       align-items:center;
-      width: 100%;
-      margin:0;
       transition:transform 0.5s;
       border: 1px solid yellow;
     }
-
+    .panel > *:first-child{
+      transform: translateY(-1000px);
+    }
+    .panel > *:last-child{
+      transform: translateY(1000px);
+    }
+    .panel.open-active > *:first-child{
+      transform: translateY(0);
+    }
+    .panel.open-active > *:last-child{
+      transform: translateY(0);
+    }
     .panel p {
       text-transform: uppercase;
       font-family: 'Amatic SC', cursive;
@@ -73,14 +79,11 @@
     .panel p:nth-child(2) {
       font-size: 4em;
     }
-
     .panel.open {
+      flex: 5;
       font-size:40px;
     }
-
   </style>
-
-
   <div class="panels">
     <div class="panel panel1">
       <p>Hey</p>
@@ -110,7 +113,25 @@
   </div>
 
   <script>
+    // 1. 找目標：每一個 panel
+    // 2. 要對目標做：對 panel 加上 class
+    // 3. 在對目標點擊的時候，加上 class
+    var panels = document.querySelectorAll('.panel');
 
+    function toggleOpen(){
+      this.classList.toggle('open');
+    }
+
+    function toggleActive(e) {
+      console.log(e.propertyName);
+      if (e.propertyName.includes('flex')) {
+        this.classList.toggle('open-active');
+      }
+    }
+
+    panels.forEach(panel => panel.addEventListener('click', toggleOpen));
+    panels.forEach(panel => panel.addEventListener('transitionend', toggleActive));
+    
   </script>
 
 </body>
